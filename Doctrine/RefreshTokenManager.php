@@ -21,12 +21,6 @@ class RefreshTokenManager extends BaseRefreshTokenManager
     protected $class;
     protected $repository;
 
-    /**
-     * Constructor.
-     *
-     * @param ObjectManager $om
-     * @param string $class
-     */
     public function __construct(ObjectManager $om, string $class)
     {
         $this->objectManager = $om;
@@ -35,30 +29,16 @@ class RefreshTokenManager extends BaseRefreshTokenManager
         $this->class = $metadata->getName();
     }
 
-    /**
-     * @param string $refreshToken
-     *
-     * @return RefreshTokenInterface
-     */
     public function get(string $refreshToken): ? RefreshTokenInterface
     {
         return $this->repository->findOneBy(['refreshToken' => $refreshToken]);
     }
 
-    /**
-     * @param string $username
-     *
-     * @return RefreshTokenInterface
-     */
     public function getLastFromUsername(string $username): ? RefreshTokenInterface
     {
         return $this->repository->findOneBy(['username' => $username]);
     }
 
-    /**
-     * @param RefreshTokenInterface $refreshToken
-     * @param bool $andFlush
-     */
     public function save(RefreshTokenInterface $refreshToken, bool $andFlush = true): void
     {
         $this->objectManager->persist($refreshToken);
@@ -68,10 +48,6 @@ class RefreshTokenManager extends BaseRefreshTokenManager
         }
     }
 
-    /**
-     * @param RefreshTokenInterface $refreshToken
-     * @param bool $andFlush
-     */
     public function delete(RefreshTokenInterface $refreshToken, bool $andFlush = true): void
     {
         $this->objectManager->remove($refreshToken);
@@ -82,9 +58,6 @@ class RefreshTokenManager extends BaseRefreshTokenManager
     }
 
     /**
-     * @param \DateTime $datetime
-     * @param bool $andFlush
-     *
      * @return RefreshTokenInterface[]
      */
     public function revokeAllInvalid(\DateTime $datetime = null, $andFlush = true): array
@@ -102,11 +75,6 @@ class RefreshTokenManager extends BaseRefreshTokenManager
         return $invalidTokens;
     }
 
-    /**
-     * Returns the RefreshToken fully qualified class name.
-     *
-     * @return string
-     */
     public function getClass(): string
     {
         return $this->class;

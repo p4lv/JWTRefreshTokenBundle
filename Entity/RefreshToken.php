@@ -60,7 +60,7 @@ class RefreshToken implements RefreshTokenInterface
 
     public function __toString()
     {
-        return (string)$this->getRefreshToken();
+        return (string) $this->getRefreshToken();
     }
 
     public function getId(): ? int
