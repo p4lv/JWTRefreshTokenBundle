@@ -22,7 +22,7 @@
     "lexik/jwt-authentication-bundle": "^2.4.2"
   },
   "require-dev": {
-    "phpspec/phpspec": "~4.0"
+    "phpspec/phpspec": "~5.1"
   },
   "config": {
     "bin-dir": "bin"
